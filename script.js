@@ -4,6 +4,14 @@ function mostrarTela(tela) {
   document.getElementById("dados").style.display = "none";
 
   document.getElementById(tela).style.display = "block";
+
+  if (tela === "dashboard") {
+    carregarDashboard();
+  }
+
+  if (tela === "dados") {
+    carregarDados();
+  }
 }
 
 function carregarDashboard() {
