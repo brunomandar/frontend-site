@@ -1,8 +1,25 @@
 
-function mostrarTela(tela) {
+function carregarDashboard() {
 
-  document.getElementById("dashboard").style.display = "none";
-  document.getElementById("dados").style.display = "none";
+  fetch("https://backend-python-9k0p.onrender.com/dashboard")
+    .then(r => r.json())
+    .then(data => {
+      document.getElementById("kpis").innerText =
+        "Total: " + data.total +
+        " | Em dia: " + data.em_dia +
+        " | Atenção: " + data.atencao +
+        " | Crítico: " + data.critico;
+    });
 
-  document.getElementById(tela).style.display = "block";
+}
+
+function carregarDados() {
+
+  fetch("https://backend-python-9k0p.onrender.com/dados")
+    .then(r => r.json())
+    .then(data => {
+      document.getElementById("tabela").innerText =
+        JSON.stringify(data, null, 2);
+    });
+
 }
