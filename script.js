@@ -1,25 +1,19 @@
+function mostrarTela(tela) {
+
+  document.getElementById("dashboard").style.display = "none";
+  document.getElementById("dados").style.display = "none";
+
+  document.getElementById(tela).style.display = "block";
+}
 
 function carregarDashboard() {
-
-  fetch("https://backend-python-9k0p.onrender.com/dashboard")
-    .then(r => r.json())
-    .then(data => {
-      document.getElementById("kpis").innerText =
-        "Total: " + data.total +
-        " | Em dia: " + data.em_dia +
-        " | Atenção: " + data.atencao +
-        " | Crítico: " + data.critico;
-    });
-
+  document.getElementById("kpis").innerText = "Dashboard carregado ✅";
 }
 
 function carregarDados() {
-
-  fetch("https://backend-python-9k0p.onrender.com/dados")
-    .then(r => r.json())
-    .then(data => {
-      document.getElementById("tabela").innerText =
-        JSON.stringify(data, null, 2);
-    });
-
+  document.getElementById("tabela").innerText = "Dados carregados ✅";
 }
+
+window.onload = function() {
+  carregarDashboard();
+};
