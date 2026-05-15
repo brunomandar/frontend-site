@@ -15,11 +15,32 @@ function mostrarTela(tela) {
 }
 
 function carregarDashboard() {
-  document.getElementById("kpis").innerText = "Dashboard carregado ✅";
+
+  fetch("https://backend-python-9k0p.onrender.com/dashboard")
+    .then(r => r.json())
+    .then(data => {
+      document.getElementById("kpis").innerText =
+        "Total: " + data.total +
+        " | Em dia: " + data.em_dia +
+        " | Atenção: " + data.atencao +
+        " | Crítico: " + data.critico;
+    })
+    .catch(() => {
+      document.getElementById("kpis").innerText = "Erro ao carregar dashboard";
+    });
 }
 
 function carregarDados() {
-  document.getElementById("tabela").innerText = "Dados carregados ✅";
+
+  fetch("https://backend-python-9k0p.onrender.com/dados")
+    .then(r => r.json())
+    .then(data => {
+      document.getElementById("tabela").innerText =
+        JSON.stringify(data, null, 2);
+    })
+    .catch(() => {
+      document.getElementById("tabela").innerText = "Erro ao carregar dados";
+    });
 }
 
 window.onload = function() {
